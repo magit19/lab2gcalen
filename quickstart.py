@@ -77,7 +77,7 @@ def main():
         'timeZone': 'Asia/Yakutsk',
       },
       'end': {
-        'dateTime': '2019-10-03T19:15:00+09:00',
+        'dateTime': '2019-10-07T19:15:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
