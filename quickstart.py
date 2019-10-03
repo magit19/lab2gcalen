@@ -21,8 +21,10 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+
+# If modifying these scopes, delete the file token.json.
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+
 
 def main():
     """Shows basic usage of the Google Calendar API.
@@ -63,6 +65,30 @@ def main():
         start = event['start'].get('dateTime', event['start'].get('date'))
         print(start, event['summary'])
 
+
+    #add event
+
+    event = {
+      'summary': 'Методы тестирования и верификации программных продуктов* Эверстов В.В.',
+      'location': '447',
+      'description': 'Лекция',
+      'start': {
+        'dateTime': '2019-10-08T15:50:00+09:00',
+        'timeZone': 'Asia/Yakutsk',
+      },
+      'end': {
+        'dateTime': '2019-10-08T17:25:00+09:00',
+        'timeZone': 'Asia/Yakutsk',
+      },
+      'recurrence': [
+        'RRULE:FREQ=DAILY;INTERVAL=14;COUNT=4'
+      ],
+      'reminders': {
+      }
+    }
+
+    event = service.events().insert(calendarId='primary', body=event).execute()
+    print('Event created: %s' % (event.get('htmlLink')))
+
 if __name__ == '__main__':
     main()
-# [END calendar_quickstart]
