@@ -81,7 +81,7 @@ def main():
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
-        'RRULE:FREQ=INTERVAL=14;COUNT=12'
+        'RRULE:FREQ=DAILY;INTERVAL=14;COUNT=12'
       ],
       'reminders': {
       }
