@@ -69,15 +69,15 @@ def main():
     #add event
 
     event = {
-      'summary': 'ДВ. Создание приложений на Питоне Павлов А.В.',
+      'summary': 'Иностранный язык в профессиональной компетенции Сидорова А.И.',
       'location': '424',
       'description': 'лаб',
       'start': {
-        'dateTime': '2019-10-03T17:40:00+09:00',
+        'dateTime': '2019-10-03T14:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'end': {
-        'dateTime': '2019-10-03T19:15:00+09:00',
+        'dateTime': '2019-10-03T15:35:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
