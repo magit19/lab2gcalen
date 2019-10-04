@@ -73,15 +73,15 @@ def main():
       'location': '424 ГУК',
       'description': 'лек',
       'start': {
-        'dateTime': '2019-10-02T19:40:00+09:00',
+        'dateTime': '2019-10-09T19:40:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'end': {
-        'dateTime': '2019-10-02T21:00:00+09:00',
+        'dateTime': '2019-10-09T21:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
-        'RRULE:FREQ=DAILY;INTERVAL=14;COUNT=12'
+        'RRULE:FREQ=DAILY;INTERVAL=14;COUNT=6'
       ],
       'reminders': {
       }
