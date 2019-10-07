@@ -69,15 +69,15 @@ def main():
     #add event
 
     event = {
-      'summary': 'Иностранный язык в профессиональной компетенции Сидорова А.И.',
+      'summary': 'Уроки громкого зевания',
       'location': '424',
       'description': 'лаб',
       'start': {
-        'dateTime': '2019-10-03T14:00:00+09:00',
+        'dateTime': '2019-10-04T19:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'end': {
-        'dateTime': '2019-10-03T15:35:00+09:00',
+        'dateTime': '2019-10-04T20:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
