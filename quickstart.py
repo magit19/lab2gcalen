@@ -87,7 +87,7 @@ def main():
       }
     }
 
-    event = service.events().insert(calendarId='primary', body=event).execute()
+    event = service.events().insert(calendarId='gvb2g9aqgums6ckqtqu171mga4@group.calendar.google.com', body=event).execute()
     print('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
