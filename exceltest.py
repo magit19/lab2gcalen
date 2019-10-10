@@ -7,7 +7,7 @@ book = xlrd.open_workbook('imi2019.xls')
 mag = book.sheet_by_index(9)                                  
                                                               
 for i in range(3,39):                                         
-    if mag.cell(i, 20).value == "":                            
+    if mag.cell(i, 20).value != "":                            
         continue                                              
     para = mag.cell(i, 20).value                               
     l_pr = mag.cell(i, 21).value                               
