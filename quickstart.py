@@ -67,28 +67,46 @@ def main():
 
 
     #add event
+    import xlrd                                                   
+                                                                  
+    start = ['08:00', '09:50', '11:40', '14:00', '15:45', '17:30']
+    end = ['09:35', '11:25', '13:15', '15:35', '17:20', '19:05']  
+                                                                  
+    book = xlrd.open_workbook('imi2019.xls')                      
+    mag = book.sheet_by_index(9)                                  
+                                                                  
+    for i in range(3,39):                                         
+        if mag.cell(i, 20).value != "":                                                                        
+            para = mag.cell(i, 20).value                                
+            l_pr = mag.cell(i, 21).value                               
+            room = mag.cell(i, 22).value
+            day = 2 + (i-3)//6                              
+            print(day, "сентября", start[(i-3)%6], 
+                end[(i-3)%6],    
+                para, 
+                l_pr, 
+                room)   
+            event = {
+             'summary': para,
+             'location': room,
+             'description': l_pr,
+             'start': {
+                'dateTime': '2019-09-0' + str(day) + 'T' + start[(i-3)%6] + ':00+09:00',
+                'timeZone': 'Asia/Yakutsk',
+             },
+             'end': {
+               'dateTime': '2019-09-0' + str(day) + 'T' + end[(i-3)%6] + ':00+09:00',
+               'timeZone': 'Asia/Yakutsk',
+             },
+             'recurrence': [
+               'RRULE:FREQ=WEEKLY;COUNT=12'
+              ],
+              'reminders': {
+              }
+            }
 
-    event = {
-      'summary': 'Иностранный язык в профессиональной компетенции Сидорова А.И.',
-      'location': '424',
-      'description': 'лаб',
-      'start': {
-        'dateTime': '2019-10-03T14:00:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'end': {
-        'dateTime': '2019-10-03T15:35:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'recurrence': [
-        'RRULE:FREQ=WEEKLY;COUNT=12'
-      ],
-      'reminders': {
-      }
-    }
-
-    event = service.events().insert(calendarId='primary', body=event).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
+            event = service.events().insert(calendarId='nbjqnjgedlcvcdcsp4pdkgv58o@group.calendar.google.com', body=event).execute()
+            print('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
     main()
