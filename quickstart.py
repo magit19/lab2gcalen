@@ -69,25 +69,25 @@ def main():
     #add event
 
     event = {
-      'summary': 'Машинное обучение Шамаев Э.И.',
-      'location': '426',
-      'description': 'лаб',
+      'summary': 'Смотреть Мемасы',
+      'location': 'Дома',
+      'description': 'Лекция',
       'start': {
-        'dateTime': '2019-10-01T14:00:00+09:00',
+        'dateTime': '2019-10-04T20:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'end': {
-        'dateTime': '2019-10-01T15:35:00+09:00',
+        'dateTime': '2019-10-04T23:00:00+09:00',
         'timeZone': 'Asia/Yakutsk',
       },
       'recurrence': [
-        'RRULE:FREQ=WEEKLY;COUNT=12'
+        'RRULE:FREQ=DAILY;COUNT=12'
       ],
       'reminders': {
       }
     }
 
-    event = service.events().insert(calendarId='primary', body=event).execute()
+    event = service.events().insert(calendarId='4vm4uobpk64vmgr9gsvpnmromo@group.calendar.google.com', body=event).execute()
     print('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
