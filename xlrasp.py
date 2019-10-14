@@ -11,5 +11,5 @@ for r in range(3,39):
         print(para, room)
         n = n + 1
 print(n)
-        
+
     
