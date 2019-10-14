@@ -67,28 +67,42 @@ def main():
 
 
     #add event
+    import xlrd
+    book = xlrd.open_workbook('imi2019.xls')
+    sh = book.sheets()[9]
 
-    event = {
-      'summary': 'Иностранный язык в профессиональной компетенции Сидорова А.И.',
-      'location': '424',
-      'description': 'лаб',
-      'start': {
-        'dateTime': '2019-10-04T18:00:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'end': {
-        'dateTime': '2019-10-04T19:00:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'recurrence': [
-        'RRULE:FREQ=WEEKLY;COUNT=12'
-      ],
-      'reminders': {
-      }
-    }
+    start = ['08:00', '09:50', '11:40', '14:00', '15:45', '17:30']
+    end = ['09:35', '11:25', '13:15', '15:35', '17:20', '19:05']
 
-    event = service.events().insert(calendarId='primary', body=event).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
+    n=0
+    for r in range(3,39):
+        if sh.cell(r, 23).value !="":
+            para = (sh.cell(r, 23).value)
+            l_pr = sh.cell(r, 24).value
+            room = sh.cell(r, 25).value
+            day = 2 + (r-3)//6
+            print(day, "сент", (r-3)%6, end[(r-3)%6], para, l_pr, room)
+            n=n+1
+            event = {
+              'summary': para,
+              'location': room,
+              'description': l_pr,
+              'start': {
+                'dateTime': '2019-09-0'+str(day)+'T'+start[(r-3)%6]+':00+09:00',
+                'timeZone': 'Asia/Yakutsk',
+               },
+               'end': {
+                 'dateTime': '2019-10-03T15:35:00+09:00',
+                 'timeZone': 'Asia/Yakutsk',
+               },
+               'recurrence': [
+                 'RRULE:FREQ=WEEKLY;COUNT=12'
+               ],
+               'reminders': {
+               }
+            }
+            event = service.events().insert(calendarId='rbmn2ov48579r9ujojc3lt7npo@group.calendar.google.com', body=event).execute()
+            print('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
     main()
