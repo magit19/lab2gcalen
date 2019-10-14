@@ -77,9 +77,9 @@ def main():
                                                                   
     for i in range(3,39):                                         
         if mag.cell(i, 23).value != "":                                                                        
-            para = mag.cell(i, 24).value                               
-            l_pr = mag.cell(i, 25).value                               
-            room = mag.cell(i, 10).value       
+            para = mag.cell(i, 23).value                               
+            l_pr = mag.cell(i, 24).value                               
+            room = mag.cell(i, 25).value       
             day = 2 + (i-3)//6                      
             print(day, "сент", 
                   start[(i-3)%6], end[(i-3)%6],    
