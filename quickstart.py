@@ -54,7 +54,7 @@ def main():
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the upcoming 10 events')
-    events_result = service.events().list(calendarId='primary', timeMin=now,
+    events_result = service.events().list(calendarId='vplakjimq7ii1bjnli5a9tcieg@group.calendar.google.com', timeMin=now,
                                         maxResults=10, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
@@ -67,28 +67,45 @@ def main():
 
 
     #add event
+    import xlrd                                                   
+                                                              
+    start = ['08:00', '09:50', '11:40', '14:00', '15:45', '17:30']
+    end = ['09:35', '11:25', '13:15', '15:35', '17:20', '19:15']  
+                                                              
+    book = xlrd.open_workbook('imi2019.xls')                      
+    mag = book.sheet_by_index(9)                                  
+                                                                  
+    for i in range(3,39):                                         
+        if mag.cell(i, 23).value != "":                                                                        
+            para = mag.cell(i, 24).value                               
+            l_pr = mag.cell(i, 25).value                               
+            room = mag.cell(i, 10).value       
+            day = 2 + (i-3)//6                      
+            print(day, "сент", 
+                  start[(i-3)%6], end[(i-3)%6],    
+                  para, l_pr, room)  
 
-    event = {
-      'summary': 'Иностранный язык в профессиональной компетенции Сидорова А.И.',
-      'location': '424',
-      'description': 'лаб',
-      'start': {
-        'dateTime': '2019-10-03T14:00:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'end': {
-        'dateTime': '2019-10-03T15:35:00+09:00',
-        'timeZone': 'Asia/Yakutsk',
-      },
-      'recurrence': [
-        'RRULE:FREQ=WEEKLY;COUNT=12'
-      ],
-      'reminders': {
-      }
-    }
+            event = {
+              'summary': para,
+              'location': room,
+              'description': l_pr,
+              'start': {
+                'dateTime': '2019-09-0'+str(day)+'T'+start[(i-3)%6]+':00+09:00',
+                'timeZone': 'Asia/Yakutsk',
+              },
+              'end': {
+                'dateTime': '2019-09-0'+str(day)+'T'+end[(i-3)%6]+':00+09:00',
+                'timeZone': 'Asia/Yakutsk',
+              },
+              'recurrence': [
+                'RRULE:FREQ=WEEKLY;COUNT=12'
+              ],
+              'reminders': {
+              }
+            }
 
-    event = service.events().insert(calendarId='primary', body=event).execute()
-    print('Event created: %s' % (event.get('htmlLink')))
+            event = service.events().insert(calendarId='vplakjimq7ii1bjnli5a9tcieg@group.calendar.google.com', body=event).execute()
+            print('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
     main()
